@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1512682479844-0fa51f42b4a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Canvas for background */
+.background {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Container */
+.container {
+    width: auto;
+    max-width: 900px;
+    padding: 20px 30px;
+    border-radius: 5px;
+    background: rgba(121, 121, 121, 0.6);
+    box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.5);
+    transition: all 0.4s;
+    position: relative;
+}
+
+.container:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Main Page */
+a {
+    color: white;
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 4px;
+}
+
+a:hover {
+    color: #A4D2D7;
+    border-color: #A4D2D7;
+}
+
+.fa-quote-left {
+    font-size: 4rem;
+    color: #A4D2D7;
+}
+
+.quote-text {
+    font-size: 2.75rem;
+}
+
+.long-quote {
+    font-size: 2rem;
+}
+
+.quote-author {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.social-wrapper button,
+.new-quote {
+    font-size: 1.2rem;
+    padding: .5rem 1.8rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.twitter-button {
+    margin-right: 5px;
+}
+
+.twitter-button:hover {
+    color: dodgerblue;
+}
+
+.favorite-button:hover,
+.favorite-button.active {
+    color: red;
+}
+
+.new-quote:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+span,
+h1 {
+    color: white;
+}
+
+/* Fav Page */
+.backBtn {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 18px;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+.savedAuthor {
+    color: #A4D2D7;
+    font-size: 1.3rem;
+}
+
+.savedText {
+    font-size: 1.5rem;
+}
+
+.removeBtn {
+    color: white;
+    background: red;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .quote-text {
+        font-size: 2rem;
+    }
+    .quote-author {
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    a {
+        right: 10px;
+    }
+}
