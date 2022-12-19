@@ -43,10 +43,6 @@ body {
     position: relative;
 }
 
-.container:hover {
-    background: rgba(0, 0, 0, 0.6);
-}
-
 /* Main Page */
 a {
     color: white;
@@ -55,11 +51,6 @@ a {
     cursor: pointer;
     border: 1px solid white;
     padding: 4px;
-}
-
-a:hover {
-    color: #A4D2D7;
-    border-color: #A4D2D7;
 }
 
 .fa-quote-left {
@@ -113,11 +104,6 @@ a:hover {
     color: red;
 }
 
-.new-quote:hover {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-}
-
 span,
 h1 {
     color: white;
@@ -157,9 +143,27 @@ h1 {
     margin-left: 3px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (min-width: 801px) {
+    .container:hover {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    a:hover {
+        color: #A4D2D7;
+        border-color: #A4D2D7;
+    }
+    .new-quote:hover {
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .container {
         width: 95%;
+    }
+    a {
+        color: #A4D2D7;
+        border-color: #A4D2D7;
     }
 }
 
