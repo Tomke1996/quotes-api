@@ -45,7 +45,6 @@ const favoriteContainer = document.querySelector('.favorite-container');
 
 let apiQuotes = [];
 let favorites = [];
-let favItems = {};
 
 async function getQuotes() {
     const apiUrl = 'https://type.fit/api/quotes';
@@ -81,19 +80,23 @@ function storeQuote() {
         authorQuote: author.textContent,
         textQuote: quoteText.textContent
     };
-    if (favoriteBtn.classList.contains('active')) {
+    const quoteIndex = favorites.findIndex(favorite => favorite.textQuote === savedQuote.textQuote && favorite.authorQuote === savedQuote.authorQuote);
+    if (quoteIndex === -1) {
+        // Quote is not in favorites array, so add it
         favorites.push(savedQuote);
+        favoriteBtn.classList.add('active');
     } else {
-        favorites.pop(savedQuote);
-    } 
+        // Quote is in favorites array, so remove it
+        favorites.splice(quoteIndex, 1);
+        favoriteBtn.classList.remove('active');
+    }
     console.log(favorites);
     localStorage.setItem('savedQuotes', JSON.stringify(favorites));
     updateDOM();
 }
 
 function createDOMNode() {
-    const favArray = Object.values(favItems);
-    favArray.forEach((favorite) => {
+    favorites.forEach((favorite) => {
         // Create div wrapper
         const quoteWrapper = document.createElement('div');
         quoteWrapper.classList.add('quote-wrapper');
@@ -105,30 +108,31 @@ function createDOMNode() {
         const savedText = document.createElement('span');
         savedText.classList.add('savedText');
         savedText.textContent = `-${favorite.textQuote}`;
-        // Remove from favorite button -- add later!
-        // const removeBtn = document.createElement('button');
-        // removeBtn.classList.add('removeBtn');
-        // removeBtn.textContent = 'X';
-        // removeBtn.setAttribute('onclick', `removeFromFavorites(${savedText.textContent})`)
+      //   Remove from favorite button
+        const removeBtn = document.createElement('button');
+        removeBtn.classList.add('removeBtn');
+        removeBtn.textContent = 'X';
+        removeBtn.addEventListener('click', () => removeFromFavorites(favorite.textQuote, favorite.authorQuote));
         // Append 
-        quoteWrapper.append(savedAuthor, savedText);
+        quoteWrapper.append(savedAuthor, savedText, removeBtn);
         favoriteContainer.appendChild(quoteWrapper);
-    });
+      });
 }
 
 function updateDOM() {
     if (localStorage.getItem('savedQuotes')) {
-        favItems = JSON.parse(localStorage.getItem('savedQuotes'));
+        favorites = JSON.parse(localStorage.getItem('savedQuotes'));
     }
-    // favorites = JSON.parse(localStorage.getItem('savedQuotes')); 
-    // console.log(favorites);
     favoriteContainer.textContent = '';
     createDOMNode();
 }
 
-// function removeFromFavorites(element) {
-//     console.log(element);
-// }
+// Remove From Favorites
+function removeFromFavorites(quoteText, authorQuote) {
+    favorites = favorites.filter(favorite => favorite.textQuote !== quoteText || favorite.authorQuote !== authorQuote);
+    localStorage.setItem('savedQuotes', JSON.stringify(favorites));
+    updateDOM();
+  }
 
 // Add Event Listeners
 newQuoteBtn.addEventListener('click', newQuotes);
